@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成績計算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .calculator label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .calculator input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculator button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>成績計算器</h1>
+        <label for="A">請輸入一段成績:</label>
+        <input type="number" id="A" step="0.1">
+
+        <label for="B">請輸入二段成績:</label>
+        <input type="number" id="B" step="0.1">
+
+        <label for="D">請輸入平常成績:</label>
+        <input type="number" id="D" step="0.1">
+
+        <button onclick="calculate()">計算</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            let A = parseFloat(document.getElementById('A').value);
+            let B = parseFloat(document.getElementById('B').value);
+            let D = parseFloat(document.getElementById('D').value);
+
+            let E = (A * 0.2) + (B * 0.2) + (D * 0.3);
+
+            let resultText;
+            if (E >= 60) {
+                resultText = `馬的你不考期末考就已經拿到了 ${E.toFixed(2)}! 你的成績及格了，可以爽爽過~`;
+            } else {
+                let C = (60 - E) / 0.3;
+                resultText = `三段成績需要達到 ${C.toFixed(2)} 你才不會補考喔~`;
+            }
+
+            document.getElementById('result').innerText = resultText;
+        }
+    </script>
+</body>
+</html>
